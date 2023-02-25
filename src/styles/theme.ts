@@ -1,5 +1,6 @@
 export const theme = {
   colors: {
+    light: '#fff',
     primary: {
       500: '#3E63AC',
       600: '#224385',
@@ -44,19 +45,18 @@ export const theme = {
     },
     weight: {
       regular: 400,
-      medium: 500,
       semi: 600,
     },
     family: 'Poppins, sans-serif',
-    transition: {
-      slow: '0.5s ease-in-out',
-      default: '0.3s ease-in-out',
-      fast: '0.1s ease-in-out',
-      ease: {
-        slow: '0.5s ease',
-        default: '0.25s ease',
-        fast: '0.1s ease',
-      },
+  },
+  transition: {
+    slow: '0.5s ease-in-out',
+    default: '0.3s ease-in-out',
+    fast: '0.1s ease-in-out',
+    ease: {
+      slow: '0.5s ease',
+      default: '0.25s ease',
+      fast: '0.1s ease',
     },
   },
 }
