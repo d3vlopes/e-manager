@@ -20,6 +20,7 @@ export const GlobalStyles = createGlobalStyle`
   body, input, textarea, button {
     font-family: ${({ theme }) => theme.font.family};
     font-weight: 400;
+    font-size: ${({ theme }) => theme.font.sizes.base};
   }
 
   button {
