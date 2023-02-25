@@ -25,4 +25,23 @@ export const GlobalStyles = createGlobalStyle`
   button {
     cursor: pointer;
   }
+
+  .page {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: margin-left 1s;
+  }
+
+  .page-with-navbar {
+    margin-left: 15%;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .page-with-navbar {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
 `
