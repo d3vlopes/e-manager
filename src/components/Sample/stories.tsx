@@ -5,14 +5,8 @@ import { Sample } from '.'
 export default {
   title: 'Components/Sample',
   component: Sample,
-  parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/example-url',
-    },
-  },
   args: {
-    title: 'Hello Union',
+    title: 'Sample',
   },
 } as ComponentMeta<typeof Sample>
 
