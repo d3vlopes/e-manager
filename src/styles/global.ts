@@ -7,6 +7,10 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  a {
+    text-decoration: none;
+  }
+
   html {
     font-size: 62.5%;
   }
@@ -30,9 +34,9 @@ export const GlobalStyles = createGlobalStyle`
   .page {
     flex-basis: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     transition: margin-left 1s;
+    padding-top: 4rem;
   }
 
   .page-with-navbar {
