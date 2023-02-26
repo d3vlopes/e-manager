@@ -1,4 +1,7 @@
-import { Dispatch, InputHTMLAttributes, SetStateAction, useState } from 'react'
+import { InputHTMLAttributes, useState } from 'react'
+
+import { useForm } from 'hooks'
+
 import * as S from './styles'
 
 type InputBaseProps = InputHTMLAttributes<HTMLInputElement>
@@ -18,15 +21,7 @@ export const Input = ({
 }: InputProps) => {
   const [inputValue, setInputValue] = useState(initialValue)
 
-  const onChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-    setValue: Dispatch<SetStateAction<string>>,
-  ) => {
-    const newValue = e.currentTarget.value
-    setValue(newValue)
-
-    !!onFieldChange && onFieldChange(newValue)
-  }
+  const { onChange } = useForm(onFieldChange!)
 
   return (
     <S.Wrapper>

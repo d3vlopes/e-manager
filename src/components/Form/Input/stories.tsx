@@ -3,8 +3,13 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { Input } from '.'
 
 export default {
-  title: 'Components/Input',
+  title: 'Form/Input',
   component: Input,
+  parameters: {
+    backgrounds: {
+      default: 'dark',
+    },
+  },
   args: {
     label: 'Label',
     initialValue: '',
