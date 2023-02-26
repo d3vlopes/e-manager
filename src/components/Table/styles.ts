@@ -17,7 +17,11 @@ export const Thead = styled.thead`
 `
 
 export const Tr = styled.tr`
-  ${({ theme }) => css``}
+  ${({ theme }) => css`
+    &:not(:last-child) {
+      border-bottom: 1px solid ${theme.colors.neutral['200']};
+    }
+  `}
 `
 
 export const Th = styled.th`

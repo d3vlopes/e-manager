@@ -4,6 +4,7 @@ import { Navbar } from 'components/Navbar'
 
 import { useNavbar } from 'hooks/useNavbar'
 
+import { AddProductPage, productPage } from 'pages'
 
 export const App = () => {
   const { isVisible } = useNavbar()
@@ -23,22 +24,7 @@ export const App = () => {
             }
           />
           <Route path="/products" element={productPage()} />
-          <Route
-            path="/products"
-            element={
-              <div className={!isVisible ? 'page' : 'page page-with-navbar'}>
-                <h1>Products</h1>
-              </div>
-            }
-          />
-          <Route
-            path="/categories"
-            element={
-              <div className={!isVisible ? 'page' : 'page page-with-navbar'}>
-                <h1>Categories</h1>
-              </div>
-            }
-          />
+          <Route path="/products/add" element={AddProductPage()} />
         </Routes>
       </div>
     </BrowserRouter>

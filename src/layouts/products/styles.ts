@@ -1,7 +1,5 @@
 import styled, { css } from 'styled-components'
 
-import { Wrapper as TableStyles } from 'components/Table/styles'
-
 export const Header = styled.div`
   display: flex;
   gap: 1.6rem;
@@ -25,8 +23,5 @@ export const Divider = styled.div`
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-
-  ${TableStyles} {
-    margin-top: 2.4rem;
-  }
+  gap: 1.6rem 0;
 `
