@@ -1,0 +1,43 @@
+import styled, { css } from 'styled-components'
+
+export const Wrapper = styled.div`
+  overflow-x: auto;
+`
+
+export const Table = styled.table`
+  ${({ theme }) => css`
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+  `}
+`
+
+export const Thead = styled.thead`
+  ${({ theme }) => css``}
+`
+
+export const Tr = styled.tr`
+  ${({ theme }) => css``}
+`
+
+export const Th = styled.th`
+  ${({ theme }) => css`
+    text-align: left;
+    padding: 0.8rem 2rem;
+    background-color: ${theme.colors.neutral['100']};
+    font-weight: bold;
+    color: ${theme.colors.primary['600']};
+  `}
+`
+
+export const Tbody = styled.tbody`
+  ${({ theme }) => css``}
+`
+
+export const Td = styled.td`
+  ${({ theme }) => css`
+    text-align: left;
+    padding: 0.8rem 2rem;
+    color: ${theme.colors.dark};
+  `}
+`
