@@ -18,7 +18,7 @@ export const Wrapper = styled.div`
 export const Input = styled.input`
   ${({ theme }) => css`
     position: relative;
-    width: min(44.4rem, 100%);
+    min-width: 44.4rem;
     height: 4.6rem;
     border-radius: 10px;
     padding: 0.8rem 4rem;

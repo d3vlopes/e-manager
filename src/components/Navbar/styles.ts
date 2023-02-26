@@ -48,6 +48,7 @@ export const Nav = styled.nav<NavProps>`
     background-color: ${theme.colors.primary['500']};
     padding: 2rem 1rem 1rem 1rem;
     transition: transform 1s;
+    z-index: 100;
 
     @media only screen and (max-width: 768px) {
       & {

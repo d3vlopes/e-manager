@@ -4,6 +4,7 @@ import { Navbar } from 'components/Navbar'
 
 import { useNavbar } from 'hooks/useNavbar'
 
+
 export const App = () => {
   const { isVisible } = useNavbar()
 
@@ -21,6 +22,7 @@ export const App = () => {
               </div>
             }
           />
+          <Route path="/products" element={productPage()} />
           <Route
             path="/products"
             element={

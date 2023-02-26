@@ -1,4 +1,6 @@
-import { formatDate, formatPrice } from 'utils'
+import { Link } from 'react-router-dom'
+
+import { formatPrice } from 'utils'
 
 import { inStockMap } from '../helpers/inStockMap'
 
@@ -8,9 +10,6 @@ import * as S from '../styles'
 
 export const TableDataTemplate = (data: DataTable) => {
   const priceFormatted = formatPrice(data.price)
-
-  const createdAtFormatted = formatDate(data.createdAt.toString())
-  const updatedAtFormatted = formatDate(data.createdAt.toString())
 
   const stockMap = inStockMap[String(data.inStock)]
 
@@ -22,8 +21,14 @@ export const TableDataTemplate = (data: DataTable) => {
       <S.Td>{priceFormatted}</S.Td>
       <S.Td>{stockMap}</S.Td>
       <S.Td>{data.quantity}</S.Td>
-      <S.Td>{createdAtFormatted}</S.Td>
-      <S.Td>{updatedAtFormatted}</S.Td>
+
+      <S.Td>
+        <div>
+          <Link key={data.id} to={`/product/${data.id}`}>
+            Editar
+          </Link>
+        </div>
+      </S.Td>
     </S.Tr>
   )
 }

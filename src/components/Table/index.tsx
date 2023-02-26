@@ -9,8 +9,8 @@ export interface DataTable {
   price: number
   inStock: boolean
   quantity: number
-  createdAt: Date
-  updatedAt: Date
+  createdAt?: Date
+  updatedAt?: Date
 }
 
 export type TableProps = {
@@ -29,8 +29,7 @@ export const Table = ({ data }: TableProps) => {
             <S.Th>Preço</S.Th>
             <S.Th>Em estoque</S.Th>
             <S.Th>Quantidade</S.Th>
-            <S.Th>Adicionado em</S.Th>
-            <S.Th>Atualizado em</S.Th>
+            <S.Th>Ações</S.Th>
           </S.Tr>
         </S.Thead>
 

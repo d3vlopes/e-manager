@@ -9,8 +9,6 @@ export const tableMock = {
       inStock: true,
       price: 2.9,
       quantity: 10,
-      createdAt: new Date(),
-      updatedAt: new Date(),
     },
     {
       id: '15d4s5da7a',
@@ -19,8 +17,6 @@ export const tableMock = {
       inStock: false,
       price: 100,
       quantity: 0,
-      createdAt: new Date(),
-      updatedAt: new Date(),
     },
     {
       id: '5d4s87ddksjd',
@@ -29,8 +25,6 @@ export const tableMock = {
       inStock: true,
       price: 1.4,
       quantity: 2,
-      createdAt: new Date(),
-      updatedAt: new Date(),
     },
   ],
 } as TableProps
