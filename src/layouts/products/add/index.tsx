@@ -17,11 +17,11 @@ type Product = Partial<ProductAPI>
 export const AddProductLayout = () => {
   const [values, setValues] = useState({
     id: uuid(),
-    name: '',
+    productName: '',
     category: '',
     price: '',
     quantity: '',
-  } as Product)
+  })
 
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -36,7 +36,12 @@ export const AddProductLayout = () => {
     event.preventDefault()
 
     //validação
-    if (!values.name || !values.category || !values.price || !values.quantity)
+    if (
+      !values.productName ||
+      !values.category ||
+      !values.price ||
+      !values.quantity
+    )
       return
 
     try {
@@ -64,11 +69,11 @@ export const AddProductLayout = () => {
             <Input
               label="Nome"
               placeholder="Nome do produto"
-              value={values.name}
+              value={values.productName}
               isError={Boolean(error.length > 0)}
               error={error}
               onChange={(event) =>
-                handleInput('name', event.currentTarget.value)
+                handleInput('productName', event.currentTarget.value)
               }
             />
 

@@ -25,12 +25,11 @@ export const ProductsLayout = () => {
 
       try {
         const data = await getAllProducts()
-
         const products = getLocalStorageData()
 
         if (products) return
 
-        setLocalStorageData(data)
+        setLocalStorageData(productsMapper(data))
       } catch (error) {
         console.log(error)
       } finally {
@@ -48,7 +47,7 @@ export const ProductsLayout = () => {
   const renderTable = () => {
     const products = getLocalStorageData()
 
-    return <Table data={productsMapper(products)} />
+    return products ? <Table data={products} /> : null
   }
 
   return (
