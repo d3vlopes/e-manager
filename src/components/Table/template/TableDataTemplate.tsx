@@ -11,7 +11,7 @@ export const TableDataTemplate = (data: DataTable) => {
 
   return (
     <S.Tr key={data.id}>
-      <S.Td>{data.id}</S.Td>
+      <S.Td>{data.id.slice(0, 5)}</S.Td>
       <S.Td>{data.productName}</S.Td>
       <S.Td>{data.category}</S.Td>
       <S.Td>{priceFormatted}</S.Td>
