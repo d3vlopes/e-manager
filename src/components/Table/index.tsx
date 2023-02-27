@@ -7,7 +7,6 @@ export interface DataTable {
   productName: string
   category: string
   price: number
-  inStock: boolean
   quantity: number
   createdAt?: Date
   updatedAt?: Date
@@ -27,7 +26,6 @@ export const Table = ({ data }: TableProps) => {
             <S.Th>Nome</S.Th>
             <S.Th>Categoia</S.Th>
             <S.Th>Preço</S.Th>
-            <S.Th>Em estoque</S.Th>
             <S.Th>Quantidade</S.Th>
             <S.Th>Ações</S.Th>
           </S.Tr>

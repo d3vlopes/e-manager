@@ -7,7 +7,7 @@ import * as S from './styles'
 type InputBaseProps = InputHTMLAttributes<HTMLInputElement>
 
 export interface InputProps extends InputBaseProps {
-  label: string
+  label?: string
   initialValue?: string
   onFieldChange?: (value: string) => void
 }
@@ -25,7 +25,7 @@ export const Input = ({
 
   return (
     <S.Wrapper>
-      <S.Label htmlFor={name}>{label}</S.Label>
+      {!!label && <S.Label htmlFor={name}>{label}</S.Label>}
       <S.Input
         type="text"
         onChange={(event) => onChange(event, setInputValue)}

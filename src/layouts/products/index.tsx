@@ -1,14 +1,51 @@
+import { useEffect, useState } from 'react'
+import { useTheme } from 'styled-components'
 import { Link } from 'react-router-dom'
 
-import { Button, Search, Table } from 'components'
+import { getAllProducts } from 'http/requests/products'
 
-import { tableMock } from 'components/Table/mock'
+import { ProductAPI } from 'api'
+
+import { productsMapper } from 'mappers'
+
+import { Button, Search, Table, Loading } from 'components'
 
 import { BaseLayout } from 'layouts/base'
 
 import * as S from './styles'
 
 export const ProductsLayout = () => {
+  const [products, setProducts] = useState<ProductAPI[]>([])
+  const [isLoading, setIsLoading] = useState(false)
+
+  const theme = useTheme()
+
+  useEffect(() => {
+    async function loadProducts() {
+      setIsLoading(true)
+
+      try {
+        const data = await getAllProducts()
+
+        setProducts(data)
+      } catch (error) {
+        console.log(error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    loadProducts()
+  }, [])
+
+  const renderLoading = () => {
+    return <Loading color={theme.colors.primary[500]} />
+  }
+
+  const renderTable = () => {
+    return <Table data={productsMapper(products)} />
+  }
+
   return (
     <BaseLayout title="Produtos">
       <S.Header>
@@ -22,7 +59,7 @@ export const ProductsLayout = () => {
           <Button>Adicionar produto</Button>
         </Link>
 
-        <Table data={tableMock.data} />
+        {isLoading ? renderLoading() : renderTable()}
       </S.Content>
     </BaseLayout>
   )
