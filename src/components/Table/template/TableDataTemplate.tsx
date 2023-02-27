@@ -1,3 +1,4 @@
+import { Button } from 'components/Button'
 import { Link } from 'react-router-dom'
 
 import { formatPrice } from 'utils'
@@ -18,11 +19,17 @@ export const TableDataTemplate = (data: DataTable) => {
       <S.Td>{data.quantity}</S.Td>
 
       <S.Td>
-        <div>
-          <Link key={data.id} to={`/product/${data.id}`}>
-            Editar
-          </Link>
-        </div>
+        <S.ButtonGroup>
+          <Button size="small">
+            <Link key={data.id} to={`/product/${data.id}`}>
+              Editar
+            </Link>
+          </Button>
+
+          <Button size="small" color="danger">
+            Remover
+          </Button>
+        </S.ButtonGroup>
       </S.Td>
     </S.Tr>
   )

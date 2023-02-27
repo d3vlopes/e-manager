@@ -40,8 +40,19 @@ export const Tbody = styled.tbody`
 
 export const Td = styled.td`
   ${({ theme }) => css`
-    text-align: left;
     padding: 0.8rem 2rem;
     color: ${theme.colors.dark};
+  `}
+`
+
+export const ButtonGroup = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+
+    a {
+      color: ${theme.colors.neutral['100']};
+    }
   `}
 `
