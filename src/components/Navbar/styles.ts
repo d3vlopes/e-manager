@@ -43,12 +43,18 @@ export const Nav = styled.nav<NavProps>`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 15%;
+    width: 25%;
     min-height: 100vh;
     background-color: ${theme.colors.primary['500']};
     padding: 2rem 1rem 1rem 1rem;
     transition: transform 1s;
     z-index: 100;
+
+    @media only screen and (min-width: 1080px) {
+      & {
+        width: 15%;
+      }
+    }
 
     @media only screen and (max-width: 768px) {
       & {
@@ -61,7 +67,7 @@ export const Nav = styled.nav<NavProps>`
       & {
         width: 70%;
         top: 38px;
-        min-height: calc(100vh - 38px);
+        min-height: 100vh;
       }
     }
 
