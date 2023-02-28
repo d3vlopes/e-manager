@@ -55,8 +55,11 @@ export const EditProductLayout = () => {
       setIsLoading(true)
 
       const products = getLocalStorageData()
+      const filteredProducts = products.filter(
+        (p: Product) => p.id !== product.id,
+      )
 
-      setLocalStorageData([...products, values])
+      setLocalStorageData([...filteredProducts, values])
 
       alert('Produto atualizado com sucesso')
 
