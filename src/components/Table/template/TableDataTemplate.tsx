@@ -1,14 +1,31 @@
 import { Button } from 'components/Button'
-import { Link } from 'react-router-dom'
+import { Product, productsMapper } from 'mappers'
+import { Link, useNavigate } from 'react-router-dom'
 
-import { formatPrice } from 'utils'
+import { formatPrice, getLocalStorageData, setLocalStorageData } from 'utils'
 
 import { DataTable } from '..'
 
 import * as S from '../styles'
 
 export const TableDataTemplate = (data: DataTable) => {
+  const navigate = useNavigate()
+
   const priceFormatted = formatPrice(data.price)
+
+  const products: Product[] = getLocalStorageData()
+
+  function handleRemoveProduct(id: string) {
+    const newProducts = products.filter((product) => product.id !== id)
+
+    console.log(newProducts)
+
+    setLocalStorageData([...newProducts])
+
+    alert('Produto removido')
+
+    navigate(0)
+  }
 
   return (
     <S.Tr key={data.id}>
@@ -26,7 +43,11 @@ export const TableDataTemplate = (data: DataTable) => {
             </Link>
           </Button>
 
-          <Button size="small" color="danger">
+          <Button
+            size="small"
+            color="danger"
+            onClick={() => handleRemoveProduct(data.id)}
+          >
             Remover
           </Button>
         </S.ButtonGroup>
