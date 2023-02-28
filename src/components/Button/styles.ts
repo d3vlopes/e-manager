@@ -4,7 +4,13 @@ import { ButtonProps } from '.'
 type WrapperProps = Omit<ButtonProps, 'children'>
 
 const wrapperModifiers = {
-  default: () => css`
+  small: () => css`
+    height: 2.4rem;
+    width: 12rem;
+    padding: 0.8rem;
+  `,
+
+  medium: () => css`
     height: 4.4rem;
     padding: 0.8rem;
   `,

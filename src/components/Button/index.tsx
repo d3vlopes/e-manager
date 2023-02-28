@@ -7,13 +7,13 @@ export type BaseButtonProps = ButtonHTMLAttributes<HTMLButtonElement>
 export interface ButtonProps extends BaseButtonProps {
   children: ReactNode
   color?: 'primary' | 'secondary' | 'danger' | 'success'
-  size?: 'default' | 'large'
+  size?: 'small' | 'medium' | 'large'
 }
 
 export const Button = ({
   children,
   color = 'primary',
-  size = 'default',
+  size = 'medium',
   ...props
 }: ButtonProps) => {
   return (

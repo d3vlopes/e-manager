@@ -8,7 +8,7 @@ export default {
   args: {
     children: 'Button',
     color: 'primary',
-    size: 'default',
+    size: 'medium',
   },
 } as ComponentMeta<typeof Button>
 
