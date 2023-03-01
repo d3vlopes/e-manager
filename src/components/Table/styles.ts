@@ -43,6 +43,10 @@ export const Td = styled.td`
   ${({ theme }) => css`
     padding: 0.8rem 2rem;
     color: ${theme.colors.dark};
+
+    &:nth-child(5) {
+      text-align: center;
+    }
   `}
 `
 

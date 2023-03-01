@@ -1,27 +1,15 @@
 import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.div`
-  ${({ theme }) => css`
-    display: flex;
-
-    svg {
-      position: absolute;
-      top: 2.2rem;
-      left: 1.2rem;
-      z-index: 10;
-      margin-left: 1.2rem;
-      color: ${theme.colors.neutral['600']};
-    }
-  `}
+  display: flex;
 `
 
 export const Input = styled.input`
   ${({ theme }) => css`
-    position: relative;
-    min-width: 44.4rem;
+    width: 100%;
     height: 4.6rem;
     border-radius: 10px;
-    padding: 0.8rem 4rem;
+    padding: 0.8rem 1.6rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,6 +18,12 @@ export const Input = styled.input`
 
     &::placeholder {
       color: ${theme.colors.neutral['600']};
+    }
+
+    @media only screen and (min-width: 768px) {
+      & {
+        min-width: 44.6rem;
+      }
     }
   `}
 `
