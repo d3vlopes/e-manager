@@ -1,3 +1,4 @@
+import { Component } from 'react'
 import { FaSpinner } from 'react-icons/fa'
 
 import * as S from './styles'
@@ -7,10 +8,12 @@ export interface LoadingProps {
   size?: string | number
 }
 
-export const Loading = ({ color, size = 3.4 }: LoadingProps) => {
-  return (
-    <S.Wrapper color={color} size={size}>
-      <FaSpinner />
-    </S.Wrapper>
-  )
+export class Loading extends Component<LoadingProps> {
+  render() {
+    return (
+      <S.Wrapper color={this.props.color} size={this.props.size || 3.4}>
+        <FaSpinner />
+      </S.Wrapper>
+    )
+  }
 }
