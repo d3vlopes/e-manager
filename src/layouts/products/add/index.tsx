@@ -1,5 +1,6 @@
 import { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
 import { createProduct } from 'http/requests/products'
 
@@ -13,8 +14,8 @@ export const AddProductLayout = () => {
   const [values, setValues] = useState({
     name: '',
     category: '',
-    price: '',
-    quantity: '',
+    price: '0',
+    quantity: '0',
   })
 
   const [isLoading, setIsLoading] = useState(false)
@@ -28,13 +29,19 @@ export const AddProductLayout = () => {
   async function handleSubmit(event: FormEvent) {
     event.preventDefault()
 
-    if (!values.name || !values.category || !values.price || !values.quantity)
-      return
+    if (
+      !values.name ||
+      !values.category ||
+      Number(values.price) <= 0 ||
+      !values.quantity
+    ) {
+      return toast.error('Preencha todos os campos')
+    }
 
     try {
       setIsLoading(true)
 
-      alert('Produto adicionado com sucesso')
+      toast.success('Produto adicionado com sucesso')
 
       await createProduct({
         ...values,

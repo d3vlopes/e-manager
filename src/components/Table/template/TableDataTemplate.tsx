@@ -1,3 +1,5 @@
+import toast from 'react-hot-toast'
+
 import { Button } from 'components/Button'
 import { removeProduct } from 'http/requests/products'
 
@@ -14,12 +16,36 @@ export const TableDataTemplate = (data: DataTable) => {
 
   const priceFormatted = formatPrice(data.price)
 
-  async function handleRemoveProduct(id: string) {
-    alert('Produto removido')
+  async function apiRemoveProduct(id: string) {
+    await removeProduct(id)
 
     navigate(0)
+  }
 
-    await removeProduct(id)
+  async function handleRemoveProduct(id: string) {
+    toast((t) => (
+      <S.RemoveWrapper>
+        <span>Tem certeza que desja remover esse produto?</span>
+        <S.RemoveButtonsGroup>
+          <Button
+            type="button"
+            color="secondary"
+            size="small"
+            onClick={() => toast.dismiss(t.id)}
+          >
+            Cancelar
+          </Button>
+          <Button
+            type="button"
+            color="danger"
+            size="small"
+            onClick={() => apiRemoveProduct(id)}
+          >
+            Remover
+          </Button>
+        </S.RemoveButtonsGroup>
+      </S.RemoveWrapper>
+    ))
   }
 
   return (

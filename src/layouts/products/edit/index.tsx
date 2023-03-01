@@ -1,5 +1,6 @@
 import { FormEvent, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
 import { Product, productMapper } from 'mappers'
 
@@ -33,23 +34,23 @@ export const EditProductLayout = () => {
       !product.category ||
       product.price < 0 ||
       product.quantity < 0
-    )
-      return
+    ) {
+      return toast.error('Preencha todos os campos')
+    }
 
     try {
       setIsLoading(true)
 
-      const data = await updateProduct(id!, {
+      await updateProduct(id!, {
         name: product.productName,
         price: product.price,
         quantity: Number(product.quantity),
         category: product.category,
       })
 
-      alert('Produto atualizado com sucesso')
+      toast.success('Produto atualizado com sucesso')
 
       navigate('/products')
-      console.log('data =>', data)
     } catch (error) {
       console.log(error)
     } finally {

@@ -61,3 +61,20 @@ export const ButtonGroup = styled.div`
     }
   `}
 `
+
+export const RemoveWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    text-align: center;
+  }
+`
+
+export const RemoveButtonsGroup = styled.div`
+  display: flex;
+  gap: 0.8rem;
+  margin: 0.8rem;
+`
