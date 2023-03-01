@@ -25,3 +25,9 @@ export const Content = styled.div`
   flex-direction: column;
   gap: 1.6rem 0;
 `
+
+export const NotFound = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`

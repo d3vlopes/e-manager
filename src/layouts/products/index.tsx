@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { ChangeEvent, useCallback, useEffect, useState } from 'react'
 import { useTheme } from 'styled-components'
 import { Link } from 'react-router-dom'
 
@@ -6,7 +6,15 @@ import { getAllProducts } from 'http/requests/products'
 
 import { Product, productsMapper } from 'mappers'
 
-import { Button, Search, Table, Loading } from 'components'
+import { Button, Search, Loading } from 'components'
+
+import {
+  renderFilteredTable,
+  renderNotFilteredTable,
+  renderNotFoundProduct,
+} from './renders'
+
+import { handleFilteredProducts } from './helpers'
 
 import { BaseLayout } from 'layouts/base'
 
@@ -15,39 +23,51 @@ import * as S from './styles'
 export const ProductsLayout = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [products, setProducts] = useState<Product[]>([])
+  const [searchValue, setSearchValue] = useState('')
+  const [searchShow, setSearchShow] = useState(false)
 
   const theme = useTheme()
 
-  useEffect(() => {
-    async function loadProducts() {
+  const handleLoadProducts = useCallback(async () => {
+    try {
       setIsLoading(true)
 
-      try {
-        const data = await getAllProducts()
+      const data = await getAllProducts()
 
-        setProducts(productsMapper(data))
-      } catch (error) {
-        console.log(error)
-      } finally {
-        setIsLoading(false)
-      }
+      setProducts(productsMapper(data))
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsLoading(false)
     }
-
-    loadProducts()
   }, [])
 
-  const renderLoading = () => {
-    return <Loading color={theme.colors.primary[500]} />
+  useEffect(() => {
+    handleLoadProducts()
+  }, [handleLoadProducts])
+
+  function handleSearch(event: ChangeEvent<HTMLInputElement>) {
+    const { value } = event.target
+
+    setSearchValue(value)
+
+    if (value === '') {
+      setSearchShow(false)
+    } else {
+      setSearchShow(true)
+    }
   }
 
-  const renderTable = () => {
-    return products ? <Table data={products} /> : null
-  }
+  const filteredProducts = handleFilteredProducts(products, searchValue)
 
   return (
     <BaseLayout title="Produtos">
       <S.Header>
-        <Search placeholder="Buscar produto" />
+        <Search
+          value={searchValue}
+          onChange={(event) => handleSearch(event)}
+          placeholder="Buscar produto"
+        />
       </S.Header>
 
       <S.Divider />
@@ -57,7 +77,11 @@ export const ProductsLayout = () => {
           <Button>Adicionar produto</Button>
         </Link>
 
-        {isLoading ? renderLoading() : renderTable()}
+        {isLoading && <Loading color={theme.colors.primary[500]} />}
+        {searchShow && renderFilteredTable(filteredProducts)}
+        {!searchShow && renderNotFilteredTable(products)}
+
+        {filteredProducts.length === 0 && renderNotFoundProduct()}
       </S.Content>
     </BaseLayout>
   )
