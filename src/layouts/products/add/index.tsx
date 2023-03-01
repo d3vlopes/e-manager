@@ -11,13 +11,13 @@ import { Button, Input } from 'components'
 import { BaseLayout } from 'layouts/base'
 
 import * as S from './styles'
+import { createProduct } from 'http/requests/products'
 
 type Product = Partial<ProductAPI>
 
 export const AddProductLayout = () => {
   const [values, setValues] = useState({
-    id: uuid(),
-    productName: '',
+    name: '',
     category: '',
     price: '',
     quantity: '',
@@ -36,22 +36,19 @@ export const AddProductLayout = () => {
     event.preventDefault()
 
     //validação
-    if (
-      !values.productName ||
-      !values.category ||
-      !values.price ||
-      !values.quantity
-    )
+    if (!values.name || !values.category || !values.price || !values.quantity)
       return
 
     try {
       setIsLoading(true)
 
-      const products = getLocalStorageData()
-
-      setLocalStorageData([...products, values])
-
       alert('Produto adicionado com sucesso')
+
+      await createProduct({
+        ...values,
+        price: Number(values.price),
+        quantity: Number(values.quantity),
+      })
 
       navigate('/products')
     } catch (error) {
@@ -69,11 +66,11 @@ export const AddProductLayout = () => {
             <Input
               label="Nome"
               placeholder="Nome do produto"
-              value={values.productName}
+              value={values.name}
               isError={Boolean(error.length > 0)}
               error={error}
               onChange={(event) =>
-                handleInput('productName', event.currentTarget.value)
+                handleInput('name', event.currentTarget.value)
               }
             />
 

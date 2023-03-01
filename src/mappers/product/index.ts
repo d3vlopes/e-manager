@@ -1,15 +1,12 @@
 import { ProductAPI } from 'api'
+import { Product } from 'mappers/products'
 
-import { DataTable } from 'components'
-
-export type Product = DataTable
-
-export function productsMapper(products: ProductAPI[]): Product[] {
-  return products.map((product) => ({
+export const productMapper = (product: ProductAPI): Product => {
+  return {
     id: product.id,
     productName: product.name,
     category: product.category,
     price: Number(product.price),
     quantity: product.quantity,
-  }))
+  }
 }

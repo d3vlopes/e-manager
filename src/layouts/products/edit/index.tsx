@@ -3,7 +3,9 @@ import { redirect, useNavigate, useParams } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
 import { ProductAPI } from 'api'
-import { Product } from 'mappers'
+import { Product, productMapper } from 'mappers'
+
+import { findProduct, updateProduct } from 'http/requests/products'
 
 import { getLocalStorageData, setLocalStorageData } from 'utils'
 
@@ -17,18 +19,7 @@ export const EditProductLayout = () => {
   const params = useParams()
   const id = params.id
 
-  const products = getLocalStorageData()
-  const product: Product = products.find(
-    (product: Product) => product.id === id,
-  )
-
-  const [values, setValues] = useState({
-    id: product.id,
-    productName: product.productName,
-    category: product.category,
-    price: product.price,
-    quantity: product.quantity,
-  })
+  const [product, setProduct] = useState({} as Product)
 
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -36,7 +27,7 @@ export const EditProductLayout = () => {
   const navigate = useNavigate()
 
   const handleInput = (field: string, value: string | number) => {
-    setValues((s) => ({ ...s, [field]: value }))
+    setProduct((s) => ({ ...s, [field]: value }))
   }
 
   async function handleSubmit(event: FormEvent) {
@@ -44,32 +35,47 @@ export const EditProductLayout = () => {
 
     //validação
     if (
-      !values.productName ||
-      !values.category ||
-      !values.price ||
-      !values.quantity
+      !product.productName ||
+      !product.category ||
+      product.price < 0 ||
+      product.quantity < 0
     )
       return
 
     try {
       setIsLoading(true)
 
-      const products = getLocalStorageData()
-      const filteredProducts = products.filter(
-        (p: Product) => p.id !== product.id,
-      )
-
-      setLocalStorageData([...filteredProducts, values])
+      const data = await updateProduct(id!, {
+        name: product.productName,
+        price: product.price,
+        quantity: Number(product.quantity),
+        category: product.category,
+      })
 
       alert('Produto atualizado com sucesso')
 
       navigate('/products')
+      console.log('data =>', data)
     } catch (error) {
       console.log(error)
     } finally {
       setIsLoading(false)
     }
   }
+
+  useEffect(() => {
+    async function getProduct() {
+      try {
+        const data = await findProduct(id!)
+
+        setProduct(productMapper(data))
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    getProduct()
+  }, [id])
 
   const title = `Editar produto ${product.productName}`
 
@@ -81,7 +87,7 @@ export const EditProductLayout = () => {
             <Input
               label="Nome"
               placeholder="Nome do produto"
-              value={values.productName}
+              value={product.productName}
               isError={Boolean(error.length > 0)}
               error={error}
               onChange={(event) =>
@@ -92,7 +98,7 @@ export const EditProductLayout = () => {
             <Input
               label="Categoria"
               placeholder="Categoria do produto"
-              value={values.category}
+              value={product.category}
               isError={Boolean(error)}
               error={error}
               onChange={(event) =>
@@ -104,7 +110,7 @@ export const EditProductLayout = () => {
               type="number"
               label="Preço"
               placeholder="Preço do produto"
-              value={values.price}
+              value={product.price}
               onChange={(event) =>
                 handleInput('price', event.currentTarget.value)
               }
@@ -114,7 +120,7 @@ export const EditProductLayout = () => {
               type="number"
               label="Quantidade"
               placeholder="Quantidade em estoque"
-              value={values.quantity}
+              value={product.quantity}
               onChange={(event) =>
                 handleInput('quantity', event.currentTarget.value)
               }

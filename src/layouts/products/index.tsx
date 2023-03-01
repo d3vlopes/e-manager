@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom'
 
 import { getAllProducts } from 'http/requests/products'
 
-import { getLocalStorageData, setLocalStorageData } from 'utils'
-
-import { productsMapper } from 'mappers'
+import { Product, productsMapper } from 'mappers'
 
 import { Button, Search, Table, Loading } from 'components'
 
@@ -16,6 +14,7 @@ import * as S from './styles'
 
 export const ProductsLayout = () => {
   const [isLoading, setIsLoading] = useState(false)
+  const [products, setProducts] = useState<Product[]>([])
 
   const theme = useTheme()
 
@@ -25,11 +24,8 @@ export const ProductsLayout = () => {
 
       try {
         const data = await getAllProducts()
-        const products = getLocalStorageData()
 
-        if (products) return
-
-        setLocalStorageData(productsMapper(data))
+        setProducts(productsMapper(data))
       } catch (error) {
         console.log(error)
       } finally {
@@ -45,8 +41,6 @@ export const ProductsLayout = () => {
   }
 
   const renderTable = () => {
-    const products = getLocalStorageData()
-
     return products ? <Table data={products} /> : null
   }
 
