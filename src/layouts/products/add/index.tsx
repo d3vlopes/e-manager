@@ -1,19 +1,13 @@
 import { FormEvent, useState } from 'react'
-import { redirect, useNavigate } from 'react-router-dom'
-import { v4 as uuid } from 'uuid'
+import { useNavigate } from 'react-router-dom'
 
-import { ProductAPI } from 'api'
-
-import { getLocalStorageData, setLocalStorageData } from 'utils'
+import { createProduct } from 'http/requests/products'
 
 import { Button, Input } from 'components'
 
 import { BaseLayout } from 'layouts/base'
 
 import * as S from './styles'
-import { createProduct } from 'http/requests/products'
-
-type Product = Partial<ProductAPI>
 
 export const AddProductLayout = () => {
   const [values, setValues] = useState({
@@ -23,7 +17,6 @@ export const AddProductLayout = () => {
     quantity: '',
   })
 
-  const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
   const navigate = useNavigate()
@@ -35,7 +28,6 @@ export const AddProductLayout = () => {
   async function handleSubmit(event: FormEvent) {
     event.preventDefault()
 
-    //validação
     if (!values.name || !values.category || !values.price || !values.quantity)
       return
 
@@ -67,8 +59,6 @@ export const AddProductLayout = () => {
               label="Nome"
               placeholder="Nome do produto"
               value={values.name}
-              isError={Boolean(error.length > 0)}
-              error={error}
               onChange={(event) =>
                 handleInput('name', event.currentTarget.value)
               }
@@ -78,8 +68,6 @@ export const AddProductLayout = () => {
               label="Categoria"
               placeholder="Categoria do produto"
               value={values.category}
-              isError={Boolean(error)}
-              error={error}
               onChange={(event) =>
                 handleInput('category', event.currentTarget.value)
               }

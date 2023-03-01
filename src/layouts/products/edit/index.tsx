@@ -1,13 +1,9 @@
 import { FormEvent, useEffect, useState } from 'react'
-import { redirect, useNavigate, useParams } from 'react-router-dom'
-import { v4 as uuid } from 'uuid'
+import { useNavigate, useParams } from 'react-router-dom'
 
-import { ProductAPI } from 'api'
 import { Product, productMapper } from 'mappers'
 
 import { findProduct, updateProduct } from 'http/requests/products'
-
-import { getLocalStorageData, setLocalStorageData } from 'utils'
 
 import { Button, Input } from 'components'
 
@@ -21,7 +17,6 @@ export const EditProductLayout = () => {
 
   const [product, setProduct] = useState({} as Product)
 
-  const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
   const navigate = useNavigate()
@@ -33,7 +28,6 @@ export const EditProductLayout = () => {
   async function handleSubmit(event: FormEvent) {
     event.preventDefault()
 
-    //validação
     if (
       !product.productName ||
       !product.category ||
@@ -88,8 +82,6 @@ export const EditProductLayout = () => {
               label="Nome"
               placeholder="Nome do produto"
               value={product.productName}
-              isError={Boolean(error.length > 0)}
-              error={error}
               onChange={(event) =>
                 handleInput('productName', event.currentTarget.value)
               }
@@ -99,8 +91,6 @@ export const EditProductLayout = () => {
               label="Categoria"
               placeholder="Categoria do produto"
               value={product.category}
-              isError={Boolean(error)}
-              error={error}
               onChange={(event) =>
                 handleInput('category', event.currentTarget.value)
               }
