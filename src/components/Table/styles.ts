@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.div`
   overflow-x: auto;
+  max-height: 60rem;
 `
 
 export const Table = styled.table`

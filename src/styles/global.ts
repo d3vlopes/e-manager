@@ -9,6 +9,8 @@ export const GlobalStyles = createGlobalStyle`
 
   a {
     text-decoration: none;
+    display: block;
+    width: 100%;
   }
 
   html {
