@@ -8,7 +8,7 @@ import { getAllProducts } from 'http/requests/products'
 
 import { productsMapper } from 'mappers'
 
-import { Button, Search, Loading } from 'components'
+import { Button, Loading } from 'components'
 
 import {
   renderFilteredTable,
@@ -64,14 +64,6 @@ export const ProductsLayout = () => {
 
   return (
     <BaseLayout title="Produtos">
-      <S.Header>
-        <Search
-          value={searchValue}
-          onChange={(event) => handleSearch(event)}
-          placeholder="Buscar produto"
-        />
-      </S.Header>
-
       <S.Divider />
 
       <S.Content>

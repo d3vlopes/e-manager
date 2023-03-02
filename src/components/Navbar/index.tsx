@@ -40,10 +40,6 @@ export const Navbar = () => {
               <FaTag size={20} />
               <span>Produtos </span>
             </S.NavLink>
-            <S.NavLink to="/categories">
-              <FaHashtag size={20} />
-              <span>Categorias</span>
-            </S.NavLink>
           </S.NavLinks>
         </div>
       </S.Nav>

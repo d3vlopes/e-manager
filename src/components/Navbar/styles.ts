@@ -50,6 +50,16 @@ export const Nav = styled.nav<NavProps>`
     transition: transform 1s;
     z-index: 100;
 
+    .active {
+      background-color: ${theme.colors.primary['600']};
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.2rem 0;
+      max-width: 26.5rem;
+    }
+
     @media only screen and (min-width: 1080px) {
       & {
         width: 15%;
