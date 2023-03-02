@@ -1,7 +1,7 @@
-import { DataTable } from 'components'
+import { Product } from 'domain/Product'
 
 export function handleFilteredProducts(
-  products: DataTable[],
+  products: Product[],
   searchValue: string,
 ) {
   const data = products.filter((product) => {

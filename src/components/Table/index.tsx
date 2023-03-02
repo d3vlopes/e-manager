@@ -1,16 +1,10 @@
+import { Product } from 'domain/Product'
+
 import { TableDataTemplate } from './template/TableDataTemplate'
 
 import * as S from './styles'
 
-export interface DataTable {
-  id: string
-  productName: string
-  category: string
-  price: number
-  quantity: number
-  createdAt?: Date
-  updatedAt?: Date
-}
+export type DataTable = Product
 
 export type TableProps = {
   data: DataTable[]

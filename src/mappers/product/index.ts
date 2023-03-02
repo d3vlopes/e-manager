@@ -1,5 +1,6 @@
+import { Product } from 'domain/Product'
+
 import { ProductAPI } from 'api'
-import { Product } from 'mappers/products'
 
 export const productMapper = (product: ProductAPI): Product => {
   return {

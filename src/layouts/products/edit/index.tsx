@@ -2,7 +2,9 @@ import { FormEvent, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import toast from 'react-hot-toast'
 
-import { Product, productMapper } from 'mappers'
+import { Product } from 'domain/Product'
+
+import { productMapper } from 'mappers'
 
 import { findProduct, updateProduct } from 'http/requests/products'
 

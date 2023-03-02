@@ -1,5 +1,7 @@
-import { DataTable, Table } from 'components'
+import { Product } from 'domain/Product'
 
-export const renderNotFilteredTable = (products: DataTable[]) => {
+import { Table } from 'components'
+
+export const renderNotFilteredTable = (products: Product[]) => {
   return <Table data={products} />
 }

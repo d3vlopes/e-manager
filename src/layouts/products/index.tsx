@@ -2,9 +2,11 @@ import { ChangeEvent, useCallback, useEffect, useState } from 'react'
 import { useTheme } from 'styled-components'
 import { Link } from 'react-router-dom'
 
+import { Product } from 'domain/Product'
+
 import { getAllProducts } from 'http/requests/products'
 
-import { Product, productsMapper } from 'mappers'
+import { productsMapper } from 'mappers'
 
 import { Button, Search, Loading } from 'components'
 
