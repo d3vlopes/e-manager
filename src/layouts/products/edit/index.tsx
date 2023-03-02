@@ -8,6 +8,9 @@ import { productMapper } from 'mappers'
 
 import { findProduct, updateProduct } from 'http/requests/products'
 
+import { useAppDispatch as useDispatch } from 'redux/hooks'
+import { editProduct } from 'redux/features/product/productSlice'
+
 import { Button, Input } from 'components'
 
 import { BaseLayout } from 'layouts/base'
@@ -23,6 +26,7 @@ export const EditProductLayout = () => {
   const [isLoading, setIsLoading] = useState(false)
 
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const handleInput = (field: string, value: string | number) => {
     setProduct((s) => ({ ...s, [field]: value }))
@@ -49,6 +53,16 @@ export const EditProductLayout = () => {
         quantity: Number(product.quantity),
         category: product.category,
       })
+
+      dispatch(
+        editProduct({
+          id: product.id,
+          productName: product.productName,
+          price: Number(product.price),
+          quantity: Number(product.quantity),
+          category: product.category,
+        }),
+      )
 
       toast.success('Produto atualizado com sucesso')
 

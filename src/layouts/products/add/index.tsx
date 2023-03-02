@@ -8,6 +8,9 @@ import { Button, Input } from 'components'
 
 import { BaseLayout } from 'layouts/base'
 
+import { useAppDispatch as useDispatch } from 'redux/hooks'
+import { addProduct } from 'redux/features/product/productSlice'
+
 import * as S from './styles'
 
 export const AddProductLayout = () => {
@@ -21,6 +24,8 @@ export const AddProductLayout = () => {
   const [isLoading, setIsLoading] = useState(false)
 
   const navigate = useNavigate()
+
+  const dispatch = useDispatch()
 
   const handleInput = (field: string, value: string | number) => {
     setValues((s) => ({ ...s, [field]: value }))
@@ -48,6 +53,15 @@ export const AddProductLayout = () => {
         price: Number(values.price),
         quantity: Number(values.quantity),
       })
+
+      dispatch(
+        addProduct({
+          ...values,
+          productName: values.name,
+          price: Number(values.price),
+          quantity: Number(values.quantity),
+        }),
+      )
 
       navigate('/products')
     } catch (error) {

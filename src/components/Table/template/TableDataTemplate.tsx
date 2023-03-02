@@ -1,9 +1,12 @@
 import toast from 'react-hot-toast'
 
 import { Button } from 'components/Button'
-import { removeProduct } from 'http/requests/products'
+import { removeProduct as removeProductRequest } from 'http/requests/products'
 
 import { Link, useNavigate } from 'react-router-dom'
+
+import { useAppDispatch as useDispatch } from 'redux/hooks'
+import { removeProduct } from 'redux/features/product/productSlice'
 
 import { formatPrice } from 'utils'
 
@@ -13,11 +16,14 @@ import * as S from '../styles'
 
 export const TableDataTemplate = (data: DataTable) => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const priceFormatted = formatPrice(data.price)
 
   async function apiRemoveProduct(id: string) {
-    await removeProduct(id)
+    await removeProductRequest(id)
+
+    dispatch(removeProduct(id))
 
     navigate(0)
   }
