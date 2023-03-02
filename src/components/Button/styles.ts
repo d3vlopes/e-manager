@@ -51,6 +51,15 @@ export const Wrapper = styled.button<WrapperProps>`
       filter: brightness(0.9);
     }
 
+    &:disabled {
+      opacity: 0.8;
+      cursor: not-allowed;
+
+      &:hover {
+        filter: brightness(1);
+      }
+    }
+
     span {
       color: ${theme.colors.light};
       font-weight: ${theme.font.weight.semi};
