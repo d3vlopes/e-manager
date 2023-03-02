@@ -1,46 +1,63 @@
-# Getting Started with Create React App
+## Sobre
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Esse projeto foi desenvolvido para o teste técnico de desenvolvedor frontend na [e-Get](https://www.e-get.com.br/).
+O projeto consiste em uma aplicação web de controle de estoque de produtos em React.
 
-## Available Scripts
+## Desafio
 
-In the project directory, you can run:
+A aplicação deve permitir adicionar, editar e remover produtos, bem como buscar produtos por nome,
+categoria e preço. A página inicial da aplicação pode ter uma barra lateral ou uma barra
+superior para acessar as outras páginas da aplicação (por exemplo, a listagem de
+produtos).
 
-### `npm start`
+## Requisitos
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Use React para criar a aplicação.
+- Armazene os dados no storage do navegador ou em um backend remoto e acessível
+  pela Internet.
+- Use Styled Components para estilizar a interface.
+- A aplicação deve ser responsiva e funcionar em dispositivos móveis.
+- Desenvolva um componente de classe e um componente funcional.
+- Utilize o ciclo de vida dos componentes para realizar alguma ação específica (por
+  exemplo, carregar dados de uma API no momento da montagem do componente).
+- Utilize os Hooks do React: useState, useEffect, useMemo, useCallback, useContext
+  em algum componente.
+- Realize comunicação entre componentes utilizando props e/ou callback functions.
+- Realize renderização condicional em algum componente (por exemplo, exibir um
+  elemento apenas se uma determinada condição for satisfeita).
+- Manipule eventos em algum componente (por exemplo, realizar alguma ação ao
+  clicar em um botão).
+- Utilize o React Router para criar rotas e permitir a navegação entre páginas.
+- Utilize alguma biblioteca externa (por exemplo, Moment.js) para lidar com datas e
+  horários.
+- Crie um formulário e realize a validação dos dados de entrada antes de realizar
+  alguma ação (por exemplo, enviar os dados para uma API).
+- Utilize o Redux para gerenciar o estado da aplicação em algum componente.
+- Todos os elementos visuais devem ser criados do zero, portanto não utilizar
+  templates prontos ou frameworks como Bootstrap, Material UI, etc.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Tecnologias
 
-### `npm test`
+- [React](https://pt-br.reactjs.org/)
+- [Typescript](https://www.typescriptlang.org/)
+- [Styled Components](https://styled-components.com/)
+- [Storybook](https://storybook.js.org/)
+- [Axios](https://axios-http.com/ptbr/)
+- [Redux](https://redux.js.org/)
+- [Plop](https://plopjs.com/)
+- [React Router](https://reactrouter.com/en/main)
+- [React Hot Toast](https://react-hot-toast.com/)
+- [Eslint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Executando o projeto
 
-### `npm run build`
+1. Instale as depêndencias com o comando `yarn`
+2. Inicialize o projeto com o comando `yarn start`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Comandos
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `start`: Incializa o projeto em `localhost:3000`
+- `build`: Cria a versão de produção
+- `storybook`: Roda o Storybook em `localhost:6006`
+- `generate`: Gera a estrutura de um novo componente
